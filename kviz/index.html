@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Kvíz</title>
+  <style>
+    .correct-answer {
+      background-color: #c3e6cb;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Kvíz</h1>
+    <form id="quiz-form">
+      <div class="form-group">
+        <h3>1. Otázka: Kdy byl tým založen?</h3>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka1" id="otazka1-1" value="1967">
+          <label class="form-check-label" for="otazka1-1">
+            1967
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka1" id="otazka1-2" value="1955">
+          <label class="form-check-label" for="otazka1-2">
+            1955
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka1" id="otazka1-3" value="1974">
+          <label class="form-check-label" for="otazka1-3">
+            1974
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>2. Otázka: Jak se jmenuje stadion denveru?</h3>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka2" id="otazka2-1" value="Ball Arena">
+          <label class="form-check-label" for="otazka2-1">
+            Ball Arena
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka2" id="otazka2-2" value="Madison Square Garden">
+          <label class="form-check-label" for="otazka2-2">
+            Madison Square Garden
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka2" id="otazka2-3" value="Quicken Loans Arena">
+          <label class="form-check-label" for="otazka2-3">
+            Quicken Loans Arena
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>3. Otázka: Koho porazili v letošním finále NBA?</h3>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka3" id="otazka3-1" value="Miami Heat">
+          <label class="form-check-label" for="otazka3-1">
+            Miami Heat
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka3" id="otazka3-2" value="Los Angeles Lakers">
+          <label class="form-check-label" for="otazka3-2">
+            Los Angeles Lakers
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="otazka3" id="otazka3-3" value="Boston Celtics">
+          <label class="form-check-label" for="otazka3-3">
+            Boston Celtics
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Odeslat</button>
+    </form>
+
+    
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    const quizForm = document.getElementById('quiz-form');
+    quizForm.addEventListener('submit', handleFormSubmit);
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const correctAnswers = {
+        otazka1: '1967',
+        otazka2: 'Ball Arena',
+        otazka3: 'Miami Heat'
+      };
+
+      const userAnswers = {
+        otazka1: document.querySelector('input[name="otazka1"]:checked').value,
+        otazka2: document.querySelector('input[name="otazka2"]:checked').value,
+        otazka3: document.querySelector('input[name="otazka3"]:checked').value
+      };
+
+      for (let question in userAnswers) {
+        const selectedOption = document.querySelector(`input[name="${question}"][value="${userAnswers[question]}"]`);
+        const correctOption = document.querySelector(`input[name="${question}"][value="${correctAnswers[question]}"]`);
+
+        selectedOption.parentNode.classList.add('text-danger');
+        correctOption.parentNode.classList.add('correct-answer');
+      }
+    }
+  </script>
+</body>
+
+</html>
